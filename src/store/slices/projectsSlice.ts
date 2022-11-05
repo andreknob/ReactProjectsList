@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import initialProjects from '../data/projects.json';
 
 const initialState = {
-  projects: [],
+  projects: initialProjects,
 };
 
 type TProjectsState = typeof initialState;

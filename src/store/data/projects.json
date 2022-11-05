@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Calendar React web app",
+    "description": "A simple calendar web app made using React",
+    "ownerId": 1
+  },
+  {
+    "id": 2,
+    "name": "Microfes video streamming web app",
+    "description": "A microfronends video streamming web app made using React and Webpack's Module Federations",
+    "ownerId": 1
+  },
+  {
+    "id": 3,
+    "name": "E-commerce web app",
+    "description": "A NextJs e-commerce web app that uses Server Side Rendering for Search Engine Optimization",
+    "ownerId": 1
+  },
+  {
+    "id": 4,
+    "name": "CRM mobile app",
+    "description": "A hybrid offline-first mobile app developed with React Native",
+    "ownerId": 2
+  },
+  {
+    "id": 5,
+    "name": "Authentication Service",
+    "description": "A node.js web API used for authentication purposes",
+    "ownerId": 2
+  }
+]
