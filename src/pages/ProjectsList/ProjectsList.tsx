@@ -1,7 +1,11 @@
-import React from "react";
+import Typography from "@mui/material/Typography";
 
 const ProjectsList = () => {
-  return <div>ProjectsList</div>;
+  return (
+    <Typography variant="h1" gutterBottom>
+      ProjectsList
+    </Typography>
+  );
 };
 
 export default ProjectsList;
