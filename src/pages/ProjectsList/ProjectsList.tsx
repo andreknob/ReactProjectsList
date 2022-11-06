@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 
+import ProjectModal from "../../components/ProjectModal";
 import ProjectsTable from "../../components/ProjectsTable";
 import {
+  openProjectModal,
   selectProjects,
   updateVisibleProjects,
 } from "../../store/slices/projectsSlice";
@@ -48,10 +50,13 @@ const ProjectsList = () => {
           value={searchTerm}
           onChange={handleSearchTermChange}
         />
-        <Button>Add project</Button>
+        <Button onClick={() => dispatch(openProjectModal(null))}>
+          Add project
+        </Button>
         <Button>Add user</Button>
       </Box>
       <ProjectsTable />
+      <ProjectModal />
     </Box>
   );
 };
