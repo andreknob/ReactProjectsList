@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUser } from "../../interfaces";
 import initialUsers from '../data/users.json';
 
 const initialState = {
   users: initialUsers,
 };
 
-type TUsersState = typeof initialState;
+interface IUsersState {
+    users: IUser[];
+}
 
 export const usersSlice = createSlice({
   name: "Users",
@@ -21,6 +24,6 @@ export const {
 test
 } = usersSlice.actions;
 
-export const selectUsers = (state: { users: TUsersState }) => state.users;
+export const selectUsers = (state: { users: IUsersState }) => state.users;
 
 export default usersSlice.reducer;

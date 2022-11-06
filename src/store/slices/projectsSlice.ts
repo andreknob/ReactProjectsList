@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IProject } from "../../interfaces";
 import initialProjects from '../data/projects.json';
 
 const initialState = {
   projects: initialProjects,
 };
 
-type TProjectsState = typeof initialState;
+interface IProjectsState {
+    projects: IProject[];
+};
 
 export const projectsSlice = createSlice({
   name: "Projects",
@@ -21,6 +24,6 @@ export const {
 test
 } = projectsSlice.actions;
 
-export const selectProjects = (state: { projects: TProjectsState }) => state.projects;
+export const selectProjects = (state: { projects: IProjectsState }) => state.projects;
 
 export default projectsSlice.reducer;
