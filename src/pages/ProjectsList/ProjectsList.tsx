@@ -8,32 +8,32 @@ import ProjectsTable from "../../components/ProjectsTable";
 import {
   openProjectModal,
   selectProjects,
+  updateSearchTerm,
   updateVisibleProjects,
 } from "../../store/slices/projectsSlice";
 import { findMatchingProjects } from "../../utils/stringMatching";
 
 const ProjectsList = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { projects } = useSelector(selectProjects);
+  const { projects, searchTerm } = useSelector(selectProjects);
   const dispatch = useDispatch();
 
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSearchTermChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { value } = event.target;
-    setSearchTerm(value);
+    dispatch(updateSearchTerm(value));
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
     }
 
     if (value === "") {
       return dispatch(updateVisibleProjects(projects));
     }
 
-    timeoutRef.current = setTimeout(() => {
+    searchTimeoutRef.current = setTimeout(() => {
       const nextProjects = findMatchingProjects(projects, value);
       dispatch(updateVisibleProjects(nextProjects));
     }, 200);

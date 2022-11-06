@@ -7,6 +7,7 @@ import initialProjects from "../data/projects.json";
 const initialState = {
   projects: initialProjects,
   visibleProjects: initialProjects,
+  searchTerm: "",
   isProjectModalOpen: false,
   editingProjectId: null,
 };
@@ -14,6 +15,7 @@ const initialState = {
 interface IProjectsState {
   projects: IProject[];
   visibleProjects: IProject[];
+  searchTerm: string;
   isProjectModalOpen: boolean;
   editingProjectId: number | null;
 }
@@ -22,6 +24,9 @@ export const projectsSlice = createSlice({
   name: "Projects",
   initialState,
   reducers: {
+    updateSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    },
     updateVisibleProjects: (state, action) => {
       state.visibleProjects = action.payload;
     },
@@ -31,24 +36,31 @@ export const projectsSlice = createSlice({
         ...action.payload,
       });
       state.visibleProjects = state.projects;
+      state.searchTerm = "";
+    },
+    editProject: (state, action) => {
+      const index = state.projects.findIndex(
+        (project) => project.id === action.payload.id
+      );
+      state.projects[index] = action.payload;
+      state.visibleProjects = state.projects;
+      state.searchTerm = "";
     },
     openProjectModal: (state, action) => {
       state.isProjectModalOpen = true;
-
-      if (action.payload) {
-        state.editingProjectId = action.payload;
-      }
+      state.editingProjectId = action.payload;
     },
     closeProjectModal: (state) => {
       state.isProjectModalOpen = false;
-      state.editingProjectId = null;
     },
   },
 });
 
 export const {
+  updateSearchTerm,
   updateVisibleProjects,
   createProject,
+  editProject,
   openProjectModal,
   closeProjectModal,
 } = projectsSlice.actions;

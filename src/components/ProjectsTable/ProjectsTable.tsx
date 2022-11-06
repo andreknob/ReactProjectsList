@@ -1,7 +1,9 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import EditIcon from "@mui/icons-material/Edit";
 import {
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -11,7 +13,11 @@ import {
   Paper,
 } from "@mui/material";
 
-import { selectProjects } from "../../store/slices/projectsSlice";
+import { IProject } from "../../interfaces";
+import {
+  openProjectModal,
+  selectProjects,
+} from "../../store/slices/projectsSlice";
 import { selectUsers } from "../../store/slices/usersSlice";
 
 interface IOwnersMap {
@@ -21,6 +27,7 @@ interface IOwnersMap {
 const ProjectsTable = () => {
   const { visibleProjects } = useSelector(selectProjects);
   const { users } = useSelector(selectUsers);
+  const dispatch = useDispatch();
 
   const ownersMap: IOwnersMap = useMemo(() => {
     return users.reduce(
@@ -32,14 +39,20 @@ const ProjectsTable = () => {
     );
   }, [users]);
 
+  const handleEditProject = (project: IProject) => {
+    dispatch(openProjectModal(project.id));
+  };
+
   const renderProjectsRows = () => {
     return visibleProjects.map((project) => (
-      <TableRow
-        key={project.id}
-        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-      >
-        <TableCell>{project.id}</TableCell>
-        <TableCell>{project.name}</TableCell>
+      <TableRow key={project.id}>
+        <TableCell>
+          {project.id}{" "}
+          <IconButton onClick={() => handleEditProject(project)}>
+            <EditIcon />
+          </IconButton>
+        </TableCell>
+        <TableCell>{project.name} </TableCell>
         <TableCell>{project.description}</TableCell>
         <TableCell>
           {ownersMap[project.ownerId]} ({project.ownerId})
@@ -50,7 +63,7 @@ const ProjectsTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a projects table">
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
