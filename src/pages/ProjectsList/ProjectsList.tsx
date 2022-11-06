@@ -1,13 +1,20 @@
 import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Box, Button, TextField, Typography } from "@mui/material";
+
 import ProjectsTable from "../../components/ProjectsTable";
+import {
+  selectProjects,
+  updateVisibleProjects,
+} from "../../store/slices/projectsSlice";
 import { findMatchingProjects } from "../../utils/stringMatching";
-import { useSelector } from "react-redux";
-import { selectProjects } from "../../store/slices/projectsSlice";
 
 const ProjectsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { projects } = useSelector(selectProjects);
+  const dispatch = useDispatch();
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSearchTermChange = (
@@ -19,8 +26,14 @@ const ProjectsList = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
+
+    if (value === "") {
+      return dispatch(updateVisibleProjects(projects));
+    }
+
     timeoutRef.current = setTimeout(() => {
-      console.log(findMatchingProjects(projects, value));
+      const nextProjects = findMatchingProjects(projects, value);
+      dispatch(updateVisibleProjects(nextProjects));
     }, 200);
   };
 
@@ -31,7 +44,7 @@ const ProjectsList = () => {
           Projects List
         </Typography>
         <TextField
-          label="Project"
+          label="Project name or description"
           value={searchTerm}
           onChange={handleSearchTermChange}
         />

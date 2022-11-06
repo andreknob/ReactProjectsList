@@ -1,29 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { IProject } from "../../interfaces";
-import initialProjects from '../data/projects.json';
+import initialProjects from "../data/projects.json";
 
 const initialState = {
   projects: initialProjects,
+  visibleProjects: initialProjects,
 };
 
 interface IProjectsState {
-    projects: IProject[];
-};
+  projects: IProject[];
+  visibleProjects: IProject[];
+}
 
 export const projectsSlice = createSlice({
   name: "Projects",
   initialState,
   reducers: {
-    test: (state) => {
-      return state;
+    updateVisibleProjects: (state, action) => {
+      state.visibleProjects = action.payload;
     },
   },
 });
 
-export const {
-test
-} = projectsSlice.actions;
+export const { updateVisibleProjects } = projectsSlice.actions;
 
-export const selectProjects = (state: { projects: IProjectsState }) => state.projects;
+export const selectProjects = (state: { projects: IProjectsState }) =>
+  state.projects;
 
 export default projectsSlice.reducer;

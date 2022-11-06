@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+
 import {
   Table,
   TableBody,
@@ -7,8 +10,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
+
 import { selectProjects } from "../../store/slices/projectsSlice";
 import { selectUsers } from "../../store/slices/usersSlice";
 
@@ -17,7 +19,7 @@ interface IOwnersMap {
 }
 
 const ProjectsTable = () => {
-  const { projects } = useSelector(selectProjects);
+  const { visibleProjects } = useSelector(selectProjects);
   const { users } = useSelector(selectUsers);
 
   const ownersMap: IOwnersMap = useMemo(() => {
@@ -30,6 +32,22 @@ const ProjectsTable = () => {
     );
   }, [users]);
 
+  const renderProjectsRows = () => {
+    return visibleProjects.map((project) => (
+      <TableRow
+        key={project.id}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+      >
+        <TableCell>{project.id}</TableCell>
+        <TableCell>{project.name}</TableCell>
+        <TableCell>{project.description}</TableCell>
+        <TableCell>
+          {ownersMap[project.ownerId]} ({project.ownerId})
+        </TableCell>
+      </TableRow>
+    ));
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -41,21 +59,7 @@ const ProjectsTable = () => {
             <TableCell>Owner&nbsp;(id)</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {projects.slice(0, 20).map((project) => (
-            <TableRow
-              key={project.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell>{project.id}</TableCell>
-              <TableCell>{project.name}</TableCell>
-              <TableCell>{project.description}</TableCell>
-              <TableCell>
-                {ownersMap[project.ownerId]} ({project.ownerId})
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        <TableBody>{renderProjectsRows()}</TableBody>
       </Table>
     </TableContainer>
   );
