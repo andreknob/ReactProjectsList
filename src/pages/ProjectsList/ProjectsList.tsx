@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import ProjectsTable from "../../components/ProjectsTable";
+import { findMatchingProjects } from "../../utils/stringMatching";
+import { useSelector } from "react-redux";
+import { selectProjects } from "../../store/slices/projectsSlice";
 
 const ProjectsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const { projects } = useSelector(selectProjects);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSearchTermChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setSearchTerm(event.target.value);
+    const { value } = event.target;
+    setSearchTerm(value);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      console.log(findMatchingProjects(projects, value));
+    }, 200);
   };
 
   return (

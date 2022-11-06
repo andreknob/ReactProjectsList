@@ -42,7 +42,7 @@ const ProjectsTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {projects.map((project) => (
+          {projects.slice(0, 20).map((project) => (
             <TableRow
               key={project.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
