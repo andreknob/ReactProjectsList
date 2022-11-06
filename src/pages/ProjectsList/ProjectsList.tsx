@@ -5,12 +5,14 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 
 import ProjectModal from "../../components/ProjectModal";
 import ProjectsTable from "../../components/ProjectsTable";
+import UserModal from "../../components/UserModal";
 import {
   openProjectModal,
   selectProjects,
   updateSearchTerm,
   updateVisibleProjects,
 } from "../../store/slices/projectsSlice";
+import { openUserModal } from "../../store/slices/usersSlice";
 import { findMatchingProjects } from "../../utils/stringMatching";
 
 const ProjectsList = () => {
@@ -53,10 +55,11 @@ const ProjectsList = () => {
         <Button onClick={() => dispatch(openProjectModal(null))}>
           Add project
         </Button>
-        <Button>Add user</Button>
+        <Button onClick={() => dispatch(openUserModal())}>Add user</Button>
       </Box>
       <ProjectsTable />
       <ProjectModal />
+      <UserModal />
     </Box>
   );
 };
