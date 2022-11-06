@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IProject } from "../../interfaces";
+import { getNextUniqueIncrementalId } from "../../utils/id";
 import initialProjects from "../data/projects.json";
 
 const initialState = {
@@ -24,6 +25,13 @@ export const projectsSlice = createSlice({
     updateVisibleProjects: (state, action) => {
       state.visibleProjects = action.payload;
     },
+    createProject: (state, action) => {
+      state.projects.push({
+        id: getNextUniqueIncrementalId(state.projects),
+        ...action.payload,
+      });
+      state.visibleProjects = state.projects;
+    },
     openProjectModal: (state, action) => {
       state.isProjectModalOpen = true;
 
@@ -38,8 +46,12 @@ export const projectsSlice = createSlice({
   },
 });
 
-export const { updateVisibleProjects, openProjectModal, closeProjectModal } =
-  projectsSlice.actions;
+export const {
+  updateVisibleProjects,
+  createProject,
+  openProjectModal,
+  closeProjectModal,
+} = projectsSlice.actions;
 
 export const selectProjects = (state: { projects: IProjectsState }) =>
   state.projects;

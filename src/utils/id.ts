@@ -1,5 +1,5 @@
 export const getNextUniqueIncrementalId = (list: { id: number }[]) => {
-  const biggestId = list.reduce((acc, { id }) => {
+  const lastId = list.reduce((acc, { id }) => {
     if (id > acc) {
       return id;
     }
@@ -7,5 +7,5 @@ export const getNextUniqueIncrementalId = (list: { id: number }[]) => {
     return acc;
   }, 0);
 
-  return biggestId + 1;
+  return lastId + 1;
 };
