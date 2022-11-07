@@ -8,7 +8,7 @@
   {
     "id": 2,
     "name": "Microfes video streamming web app",
-    "description": "A microfronends video streamming web app made using React and Webpack's Module Federations",
+    "description": "A microfrontends video streamming web app made using React and Webpack's Module Federations",
     "ownerId": 1
   },
   {

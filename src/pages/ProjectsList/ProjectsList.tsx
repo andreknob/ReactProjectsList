@@ -42,19 +42,28 @@ const ProjectsList = () => {
 
   return (
     <Box sx={{ width: "80%", margin: "auto" }}>
-      <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-        <Typography variant="h4" gutterBottom>
-          Projects List
-        </Typography>
+      <Typography sx={{ marginTop: 4 }} variant="h4" gutterBottom>
+        Projects List
+      </Typography>
+      <Box sx={{ display: "flex", marginTop: 4, marginBottom: 4 }}>
         <TextField
+          sx={{ flex: 1 }}
           label="Project name or description"
           value={searchTerm}
           onChange={handleSearchTermChange}
         />
-        <Button onClick={() => dispatch(openProjectModal(null))}>
+        <Button
+          sx={{ marginLeft: 4 }}
+          onClick={() => dispatch(openProjectModal(null))}
+        >
           Add project
         </Button>
-        <Button onClick={() => dispatch(openUserModal())}>Add user</Button>
+        <Button
+          sx={{ marginLeft: 4 }}
+          onClick={() => dispatch(openUserModal())}
+        >
+          Add user
+        </Button>
       </Box>
       <ProjectsTable />
     </Box>

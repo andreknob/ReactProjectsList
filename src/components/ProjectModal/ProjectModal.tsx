@@ -134,7 +134,6 @@ const ProjectModal = ({ onSnackbarMessageChange }: IWithSnackbarProps) => {
           <Select
             labelId="select-user-label"
             id="select-user"
-            label="User"
             fullWidth
             value={userId}
             onChange={handleUserChange}
