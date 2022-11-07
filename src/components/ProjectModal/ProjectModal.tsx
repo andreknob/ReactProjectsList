@@ -15,6 +15,8 @@ import {
   TextField,
 } from "@mui/material";
 
+import withSnackbar from "../../hocs/withSnackbar";
+import { IWithSnackbarProps } from "../../hocs/withSnackbar/withSnackbar";
 import {
   closeProjectModal,
   createProject,
@@ -23,7 +25,7 @@ import {
 } from "../../store/slices/projectsSlice";
 import { selectUsers } from "../../store/slices/usersSlice";
 
-const ProjectModal = () => {
+const ProjectModal = ({ onSnackbarMessageChange }: IWithSnackbarProps) => {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
   const [userId, setUserId] = useState("");
@@ -75,6 +77,10 @@ const ProjectModal = () => {
   };
 
   const handleSave = () => {
+    if (!projectName || !projectDescription || !userId) {
+      return onSnackbarMessageChange("All field are required");
+    }
+
     const project = {
       name: projectName,
       description: projectDescription,
@@ -149,4 +155,4 @@ const ProjectModal = () => {
   );
 };
 
-export default ProjectModal;
+export default withSnackbar(ProjectModal);

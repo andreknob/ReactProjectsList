@@ -49,14 +49,14 @@ const UserModal = ({ onSnackbarMessageChange }: IWithSnackbarProps) => {
   };
 
   const handleSave = () => {
+    if (!userName || !userEmail) {
+      return onSnackbarMessageChange("All field are required");
+    }
+
     const user = {
       name: userName,
       email: userEmail,
     };
-
-    if (!userName || !userEmail) {
-      return onSnackbarMessageChange("All field are required");
-    }
 
     const hasEmailConflict = users.some((item) => item.email === userEmail);
 

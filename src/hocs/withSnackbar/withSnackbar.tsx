@@ -30,7 +30,6 @@ function withSnackbar<T extends JSX.IntrinsicAttributes>(
           {...hocProps}
           onSnackbarMessageChange={handleSnackbarMessageChange}
         />
-        ;
         <Snackbar
           open={!!snackbarMessage}
           autoHideDuration={4000}

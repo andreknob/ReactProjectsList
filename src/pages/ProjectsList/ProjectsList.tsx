@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 
-import ProjectModal from "../../components/ProjectModal";
 import ProjectsTable from "../../components/ProjectsTable";
-import UserModal from "../../components/UserModal";
+import withModals from "../../hocs/withModals";
 import {
   openProjectModal,
   selectProjects,
@@ -58,10 +57,8 @@ const ProjectsList = () => {
         <Button onClick={() => dispatch(openUserModal())}>Add user</Button>
       </Box>
       <ProjectsTable />
-      <ProjectModal />
-      <UserModal />
     </Box>
   );
 };
 
-export default ProjectsList;
+export default withModals(ProjectsList);
