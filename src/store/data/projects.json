@@ -1,32 +1,68 @@
 [
   {
     "id": 1,
-    "name": "Calendar React web app",
-    "description": "A simple calendar web app made using React",
+    "name": "Extremely Large Telescope",
+    "description": "World's largest optical to mid infrared telescope (under construction)",
     "ownerId": 1
   },
   {
     "id": 2,
-    "name": "Microfes video streamming web app",
-    "description": "A microfrontends video streamming web app made using React and Webpack's Module Federations",
+    "name": "Five hundred meter Aperture Spherical Telescope (FAST)",
+    "description": "The world's largest static/semi-static radio telescope measuring 500 meters across located in Guizhou Province, People's Republic of China",
     "ownerId": 1
   },
   {
     "id": 3,
-    "name": "E-commerce web app",
-    "description": "A NextJs e-commerce web app that uses Server Side Rendering for Search Engine Optimization",
+    "name": "Proton Improvement Project",
+    "description": "PIP II (under construction), estimated cost in 2022 is $1.28B",
     "ownerId": 1
   },
   {
     "id": 4,
-    "name": "CRM mobile app",
-    "description": "A hybrid offline-first mobile app developed with React Native",
+    "name": "European Spallation Source",
+    "description": "Strongest ever spallation source for advanced and new material research development",
     "ownerId": 2
   },
   {
     "id": 5,
-    "name": "Authentication Service",
-    "description": "A node.js web API used for authentication purposes",
+    "name": "Compass navigation system",
+    "description": "An independent system of satellite navigation by People's Republic of China",
     "ownerId": 2
+  },
+  {
+    "id": 6,
+    "name": "Deep Underground Neutrino Experiment",
+    "description": "...and the Long Baseline Neutrino Facility, proposed 2014, est. start date for phase I ($3B) is 2032",
+    "ownerId": 2
+  },
+  {
+    "id": 7,
+    "name": "Galileo Navigation Satellite System",
+    "description": "A European Union and European Space Agency global satellite navigation system, €5 billion",
+    "ownerId": 4
+  },
+  {
+    "id": 8,
+    "name": "GLONASS",
+    "description": "The Russian global navigation satellite system (since 1982)",
+    "ownerId": 3
+  },
+  {
+    "id": 9,
+    "name": "Herschel Space Observatory",
+    "description": "ESA space observatory sensitive to the far infrared and submillimetre bands",
+    "ownerId": 3
+  },
+  {
+    "id": 10,
+    "name": "Jupiter Icy Moon Explorer",
+    "description": "A planned mission to Jupiter (Est. 2022)",
+    "ownerId": 4
+  },
+  {
+    "id": 11,
+    "name": "Kennedy Space Center",
+    "description": "The main spaceport for US crewed space flight, located in Cape Canaveral, Florida",
+    "ownerId": 1
   }
 ]

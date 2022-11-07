@@ -8,5 +8,15 @@
     "id": 2,
     "name": "Jane Doe",
     "email": "janedoe@email.com"
+  },
+  {
+    "id": 3,
+    "name": "Mike Doe",
+    "email": "mikedoe@email.com"
+  },
+  {
+    "id": 4,
+    "name": "Peter Doe",
+    "email": "peterdoe@email.com"
   }
 ]
